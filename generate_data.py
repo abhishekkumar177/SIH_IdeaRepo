@@ -11,6 +11,7 @@ fake = Faker()
 NUM_STUDENTS = 1000
 START_DATE = date(2025, 8, 1)
 END_DATE = date(2025, 9, 15)
+PASSING_ATTEMPTS_LIMIT = 3
 
 # --- Students Table ---
 students = []
@@ -48,11 +49,23 @@ assessments = []
 assessment_id = 1
 for student_id in range(1, NUM_STUDENTS + 1):
     for subject in ['Math', 'Science', 'English']:
-        for _ in range(random.randint(1, 3)):  # 1-3 assessments per student per subject
+        num_assessments = random.randint(3, 5)  # Ensure enough data for trend analysis
+        for i in range(num_assessments):
             score = np.random.normal(loc=80, scale=15)
-            if student_id % 5 == 0:  # Simulate a few students with low scores
+            # Create a downward trend for some students
+            if student_id % 7 == 0:
+                score -= i * 5
+            score = max(0, min(100, int(score)))
+
+            # Simulate a few students with low scores
+            if student_id % 5 == 0:
                 score = np.random.normal(loc=50, scale=10)
-            score = max(0, min(100, int(score)))  # Clamp score between 0 and 100
+            score = max(0, min(100, int(score)))
+
+            attempts = random.randint(1, 4)  # Add attempts data
+            if score < 60:  # More attempts for lower scores
+                attempts = random.randint(2, 5)
+
             assessments.append({
                 'student_id': student_id,
                 'assessment_id': assessment_id,
@@ -60,7 +73,8 @@ for student_id in range(1, NUM_STUDENTS + 1):
                 'subject': subject,
                 'score': score,
                 'max_score': 100,
-                'attempts': random.randint(1, 2)
+                'attempts': min(attempts, 6),
+                'passing_attempts_limit': PASSING_ATTEMPTS_LIMIT
             })
             assessment_id += 1
 assessments_df = pd.DataFrame(assessments)
@@ -73,9 +87,8 @@ for student_id in range(1, NUM_STUDENTS + 1):
     status = random.choices(['Paid', 'Partial', 'Overdue'], weights=[0.85, 0.1, 0.05], k=1)[0]
     last_payment_date = None
     if status == 'Paid':
-        # FIX: Explicitly define the date range to avoid the ValueError
-        start_date_range = date.today() - timedelta(days=90)  # ~3 months ago
-        end_date_range = date.today() - timedelta(days=7)    # ~1 week ago
+        start_date_range = date.today() - timedelta(days=90)
+        end_date_range = date.today() - timedelta(days=7)
         last_payment_date = fake.date_between(start_date=start_date_range, end_date=end_date_range)
     elif status == 'Partial':
         start_date_range = date.today() - timedelta(days=90)
