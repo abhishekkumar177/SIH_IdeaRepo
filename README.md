@@ -2,7 +2,7 @@
 
 <img width="1901" height="935" alt="Screenshot 2025-09-20 140114" src="https://github.com/user-attachments/assets/3d866328-c1e0-4e90-a994-d3170077b56e" />
 
-## Student Risk Analyzer
+# Student Risk Analyzer
 
 This project is a prototype for a Student Risk Analysis system. It uses a data-driven approach to identify students who may be at risk of academic or financial issues, allowing mentors and administrators to provide timely, targeted support.
 
@@ -83,7 +83,7 @@ python app.py
 
 After the server starts, open your web browser and navigate to the local address provided (usually http://127.0.0.1:5000).
 
-How to Use the Dashboard
+## How to Use the Dashboard
 
 The web dashboard is split into two main sections:
 
@@ -91,7 +91,7 @@ Student Risk Ledger: A table showing the calculated risk score, risk band, and r
 
 Manual Risk Prediction: An interactive form that allows you to enter hypothetical student data. After entering the values, click the "Predict Risk" button to see the model's real-time prediction and the reasons for its output.
 
-Code Overview
+## Code Overview
 
 main.py: This is the core data processing and machine learning pipeline. It generates the raw data, merges it, applies the risk scoring rules, trains the model, and saves the final outputs.
 
@@ -99,7 +99,7 @@ app.py: This file defines the Flask web server. It handles loading the pre-train
 
 templates/index.html: The front-end of the application, built with HTML and Tailwind CSS. It displays the data in a table and provides the interactive form for manual predictions.
 
-Future Improvements
+## Future Improvements
 
 Enhanced Prediction: Migrate the prediction logic to be fully handled by the machine learning model instead of relying on the rule-based risk score as a feature.
 
