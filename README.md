@@ -1,3 +1,9 @@
+# Student Risk Analyzer
+
+<img width="1901" height="935" alt="image" src="https://github.com/user-attachments/assets/30a5c151-ee7e-425e-aa2e-175540e01796" />
+
+<img width="1901" height="935" alt="Screenshot 2025-09-20 140114" src="https://github.com/user-attachments/assets/3d866328-c1e0-4e90-a994-d3170077b56e" />
+
 Student Risk Analyzer
 
 This project is a prototype for a Student Risk Analysis system. It uses a data-driven approach to identify students who may be at risk of academic or financial issues, allowing mentors and administrators to provide timely, targeted support.
