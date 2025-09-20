@@ -1,16 +1,14 @@
 # Student Risk Analyzer
 
-<img width="1901" height="935" alt="image" src="https://github.com/user-attachments/assets/30a5c151-ee7e-425e-aa2e-175540e01796" />
-
 <img width="1901" height="935" alt="Screenshot 2025-09-20 140114" src="https://github.com/user-attachments/assets/3d866328-c1e0-4e90-a994-d3170077b56e" />
 
-Student Risk Analyzer
+## Student Risk Analyzer
 
 This project is a prototype for a Student Risk Analysis system. It uses a data-driven approach to identify students who may be at risk of academic or financial issues, allowing mentors and administrators to provide timely, targeted support.
 
 The system is built on a simple machine learning model that analyzes key student data points to generate a risk score and a corresponding risk band (Green, Amber, or Red). The project includes a data generation pipeline, a machine learning model, and a Flask-based web dashboard for data visualization and manual risk prediction.
 
-Features
+## Features
 
 Automated Risk Scoring: A rule-based system calculates a numerical risk score for each student by analyzing their attendance, test scores, exhausted attempts, and fee payment status.
 
@@ -24,7 +22,7 @@ Interactive Web Dashboard: A Flask-based web application provides a user-friendl
 
 Model Performance Visualization: The project generates key plots like a Confusion Matrix and ROC Curve to demonstrate the model's viability and performance.
 
-Prerequisites
+## Prerequisites
 
 To run this project, you will need to have Python and a few libraries installed.
 
@@ -37,11 +35,11 @@ Use the following command to install all the required libraries:
 pip install pandas numpy scikit-learn matplotlib seaborn Flask joblib Faker
 
 
-Getting Started
+## Getting Started
 
 Follow these steps to set up and run the project locally.
 
-1. Project Structure
+## 1. Project Structure
 
 Ensure your project directory is organized as follows:
 
@@ -52,7 +50,7 @@ Ensure your project directory is organized as follows:
 |   |-- index.html
 
 
-2. Run the Data & Model Pipeline
+## 2. Run the Data & Model Pipeline
 
 First, you need to generate the data and train the model. This script will create the necessary .csv and .joblib files.
 
@@ -75,12 +73,13 @@ risk_model.joblib
 
 It will also display several performance plots in separate windows and print analysis reports in the terminal.
 
-3. Run the Flask Web Application
+## 3. Run the Flask Web Application
 
 Once the data and model files are ready, start the Flask server to launch the web dashboard.
 
 python app.py
 
+<img width="1901" height="935" alt="image" src="https://github.com/user-attachments/assets/30a5c151-ee7e-425e-aa2e-175540e01796" />
 
 After the server starts, open your web browser and navigate to the local address provided (usually http://127.0.0.1:5000).
 
