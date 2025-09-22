@@ -1,17 +1,15 @@
 import dash
 from dash import dcc, html, Input, Output, State, dash_table
 import pandas as pd
-import numpy as np
 import plotly.graph_objects as go
 import sys
-from datetime import date, timedelta
+from datetime import date
 
 # --- Configuration and Helper Functions (Data Processing) ---
 NUM_ASSESSMENTS_PER_SUBJECT = 3
 PASSING_ATTEMPTS_LIMIT = 3
 SUBJECTS = ['Mathematics-I', 'Physics', 'Programming']
 LOGIN_PASSWORD = 'password123'
-
 
 def calculate_risk(student):
     """
@@ -129,7 +127,6 @@ def run_data_pipeline():
 
     return student_ledger
 
-
 # --- Dash App Layout and Callbacks ---
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'])
 
@@ -224,6 +221,12 @@ def update_page(n_clicks, student_id_input, password):
                             ],
                             style_cell={'textAlign': 'left'},
                             style_header={'backgroundColor': 'rgb(230, 230, 230)', 'fontWeight': 'bold'},
+                        ),
+                        html.A(
+                            html.Button('Chat AI', style={'background-color': '#007BFF', 'color': 'white', 'border': 'none', 'padding': '20px 32px', 'text-align': 'center', 'text-decoration': 'none', 'display': 'inline-block', 'font-size': '16px', 'margin': '4px 2px', 'cursor': 'pointer', 'border-radius': '12px'}),
+                            href="https://ai-counseling-chatbot.onrender.com/",
+                            target="_blank",
+                            style={'position': 'fixed', 'bottom': '20px', 'right': '20px', 'z-index': '1000'}
                         )
                     ])
                     return dashboard_layout, ''
