@@ -1,10 +1,11 @@
 import pandas as pd
 import joblib
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 from sklearn.preprocessing import label_binarize
 import numpy as np
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Change this to a unique, strong key
 
 # Load the data and model once when the app starts
 try:
@@ -19,14 +20,48 @@ except FileNotFoundError:
 risk_band_map = {0: 'Green', 1: 'Amber', 2: 'Red'}
 
 
-@app.route('/')
-def index():
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """
+    Mentor login route.
+    """
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        # Use a simple hardcoded check. For a real application, use a database.
+        if username == 'mentor' and password == 'password123':
+            session['logged_in'] = True
+            return redirect(url_for('dashboard'))
+        else:
+            return render_template('login.html', error='Invalid credentials')
+    return render_template('login.html')
+
+
+@app.route('/logout')
+def logout():
+    """
+    Log out the user by clearing the session.
+    """
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+
+
+@app.route('/dashboard')
+def dashboard():
     """
     Main dashboard route.
-    Renders a template showing the student data table.
+    Only accessible after a successful login.
     """
-    # Convert DataFrame to a list of dictionaries for easier handling in the template
-    students = student_ledger.to_dict('records')
+    if 'logged_in' not in session:
+        return redirect(url_for('login'))
+
+    # Filter for at-risk students (Amber or Red)
+    at_risk_students = student_ledger[
+        (student_ledger['risk_band'] == 'Amber') | (student_ledger['risk_band'] == 'Red')
+        ]
+
+    # Convert filtered DataFrame to a list of dictionaries for the template
+    students = at_risk_students.to_dict('records')
     return render_template('index.html', students=students)
 
 
@@ -34,7 +69,11 @@ def index():
 def predict():
     """
     API endpoint to handle risk prediction from the front-end form.
+    This route can be accessed by the logged-in mentor.
     """
+    if 'logged_in' not in session:
+        return jsonify({'error': 'Unauthorized'}), 401
+
     try:
         data = request.json
 
@@ -54,7 +93,7 @@ def predict():
             risk_reasons.append(f"Attendance {attendance:.0f}% (70-85% band)")
         elif 50 <= attendance < 70:
             risk_score += 25
-            reasons.append(f"Attendance {attendance:.0f}% (50-70% band)")
+            risk_reasons.append(f"Attendance {attendance:.0f}% (50-70% band)")
         elif attendance < 50:
             risk_score += 50
             risk_reasons.append(f"Attendance {attendance:.0f}% (<50% band)")
