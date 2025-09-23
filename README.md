@@ -14,7 +14,6 @@ The **Student Risk Analyzer** is a comprehensive, spreadsheet-first, low-cost ea
       * **Mentor Dashboard (`app_mentor.py`)**: A web-based application for mentors to access a dashboard of all their assigned students. This dashboard provides a consolidated view of student data and an alerting system.
   * **Notification and Alert System**: The mentor dashboard includes a notification bell that alerts mentors to students in the "Red Zone." Clicking the bell opens a pop-up modal with a list of at-risk students, ensuring no student's critical status is missed.
   * **Integrated Counseling Chatbot**: The student dashboard features a floating chatbot button in the bottom-right corner. Clicking this button takes the student to an AI counseling service for immediate support, promoting a proactive approach to student well-being.
-  * **Centralized Management**: The `app_manager.py` script provides a simple web interface to run and terminate the dashboard applications, simplifying the process of starting and stopping the various components of the platform.
 
 ## Data Model
 
