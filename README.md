@@ -4,6 +4,25 @@
 
 The **Student Risk Analyzer** is a comprehensive, spreadsheet-first, low-cost early-warning system designed to help students and mentors proactively manage academic and financial risks. The platform automates the entire process, from data ingestion to risk analysis and interactive visualization, with a strong focus on transparency and user-friendly interfaces.
 
+## Documentation ### Technical Approach: Student Risk Analyzer
+
+The technical approach for the **Student Risk Analyzer** is built on a modular, Python-based architecture designed for efficiency, transparency, and ease of maintenance. The system is composed of several key components that work together to deliver a comprehensive early-warning solution.
+
+***
+
+### Data Pipeline and Processing
+The core of the system is a robust data pipeline implemented using the **Pandas** library. It follows a "spreadsheet-first" philosophy, ingesting data from multiple CSV files. These disparate data sources are then processed and merged into a single, comprehensive `student_ledger` DataFrame. This approach ensures a single source of truth for all student data, simplifying subsequent analysis. The pipeline is designed to be run as a separate process, separating data-heavy operations from the user-facing application for improved performance.
+
+***
+
+### Rule-Based Risk Engine
+The risk analysis is driven by a **transparent, rule-based scoring engine**. This engine applies a series of conditional logic checks (`if/elif/else`) on key performance indicators (KPIs) such as attendance percentage, average test scores, and overdue fee days. For each rule violation, a student is assigned points, which are summed to produce a final risk score. This score is then mapped to a clear risk band (Green, Amber, or Red), and the specific reasons for the risk are captured. This approach ensures that the risk assessment is easily understood and trusted by educators and students.
+
+***
+
+### Web Application and Interface
+The user interface is developed using the **Dash** framework, which is built on top of Flask and Plotly. This allows for the creation of interactive, analytical web dashboards entirely in Python, eliminating the need for separate front-end development in JavaScript or HTML. The application features a secure login system for both students and mentors, with dynamic content rendering based on user credentials. Key features like the notification bell for at-risk students and the counseling chatbot are integrated as `html` components and managed through Dash callbacks, providing a responsive and modern user experience. 
+
 ## Key Features
 
   * **Consolidated Dashboard**: The platform features a single, consolidated dashboard for each student, presenting all key information in one place. This includes personal details, academic performance, financial status, and risk analysis.
@@ -108,3 +127,6 @@ pip install pandas numpy dash plotly Flask psutil Faker
   * The `app_manager.py` script is the best way to handle this, as it gives you clear buttons for each application.
 
 By following these troubleshooting steps, you should be able to resolve any issues and get the **Student Risk Analyzer** platform running smoothly.
+
+<img width="1586" height="814" alt="image" src="https://github.com/user-attachments/assets/367a8c65-864e-4e31-9ebf-82fdb59fac99" />
+
