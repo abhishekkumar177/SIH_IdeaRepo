@@ -34,7 +34,7 @@ The user interface is developed using the **Dash** framework, which is built on 
   * **Notification and Alert System**: The mentor dashboard includes a notification bell that alerts mentors to students in the "Red Zone." Clicking the bell opens a pop-up modal with a list of at-risk students, ensuring no student's critical status is missed.
   * **Integrated Counseling Chatbot**: The student dashboard features a floating chatbot button in the bottom-right corner. Clicking this button takes the student to an AI counseling service for immediate support, promoting a proactive approach to student well-being.
 
-## Data Model
+# Data Model
 
 The system uses the following CSV files as data sources:
 
@@ -44,7 +44,7 @@ The system uses the following CSV files as data sources:
   * `fees.csv`: Tracks fee payment status.
   * `mentors.csv`: Stores login credentials and names for mentors.
 
-## How to Run
+# How to Run
 
 1.  **Clone the Repository**:
     ```bash
@@ -65,7 +65,7 @@ The system uses the following CSV files as data sources:
     ```
     Open your browser and navigate to `http://127.0.0.1:5000` to access the manager dashboard. From there, you can start `app_mentor.py` or `app_student.py`.
 
-## Login Credentials
+# Login Credentials
 
   * **Students**:
       * **Username**: `student_id` (e.g., `2000`, `2001`, etc.)
